@@ -31,14 +31,14 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
 
     <!-- Configuration Tailwind personnalisée -->
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: { sans: ['Montserrat', 'sans-serif'], serif: ['Playfair Display', 'serif'] },
+                    fontFamily: { sans: ['Montserrat', 'sans-serif'] },
                     colors: { 
                         'ivory': '#FDFBF7', 
                         'charcoal': '#121212', 
@@ -157,8 +157,16 @@
                                     info@cabinetjkb.com
                                 </a>
                             </div>
-                            <div className="flex space-x-6">
+                                    <div className="flex space-x-6">
                                 <a href="https://wa.me/243851305152" className="hover:text-gold transition-colors">WhatsApp</a>
+                                <a href="https://www.linkedin.com/company/cabinet-jbk" className="hover:text-gold transition-colors flex items-center" target="_blank" rel="noopener">
+                                  <svg className="w-4 h-4 mr-1" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                                  LinkedIn
+                                </a>
+                                <a href="https://www.facebook.com/cabinetjkb" className="hover:text-gold transition-colors flex items-center" target="_blank" rel="noopener">
+                                  <svg className="w-4 h-4 mr-1" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                                  Facebook
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -166,7 +174,7 @@
 <nav className={`relative fixed top-0 w-full z-50 transition-all duration-500 ${scrolled ? 'bg-blue/95 py-3 shadow-xl backdrop-blur-md' : 'bg-transparent py-4'}`}>
                         <div className="container mx-auto px-6 flex justify-between items-center text-blue">
                             <div className="z-50 cursor-pointer" onClick={() => window.location.href = 'index.html'}>
-                                <div className="font-serif text-3xl tracking-tighter text-white">J<span className="text-gold">.</span>B<span className="text-gold">.</span>K</div>
+<div className="font-sans font-bold text-3xl tracking-tighter text-white">J<span className="text-gold">.</span>B<span className="text-gold">.</span>K</div>
                             </div>
                             <div className="hidden lg:flex items-center space-x-12">
                                 <a href="index.html" className="text-[11px] font-bold tracking-[0.2em] uppercase hover:text-gold transition-all duration-300 relative group underline decoration-gold underline-offset-8">
@@ -255,7 +263,7 @@
                         <div className="container mx-auto px-6 relative z-10 text-center">
                             <RevealOnScroll>
                                 <span className="inline-block text-gold text-[10px] font-bold tracking-[0.5em] uppercase mb-8 border-b border-gold/40 pb-2">Cabinet Jean Bilele Kasongo - Lubumbashi</span>
-                                <h1 className="font-serif text-4xl md:text-6xl lg:text-8xl text-ivory mb-10 leading-[1.1] max-w-5xl mx-auto">Sécurisez vos <span className="italic text-gold opacity-90">décisions minières</span> <br/>et vos opérations d'affaires en RDC</h1>
+                                <span className="font-bold text-gold opacity-90">décisions minières</span> <br/>
                                 <p className="text-stone-300 text-base md:text-lg max-w-3xl mx-auto mb-16 font-light leading-relaxed">Cabinet d'avocats de référence en droit minier et droit des affaires. Nous protégeons vos investissements, structurons vos opérations et défendons vos intérêts avec rigueur, discrétion et impact.</p>
                                 <div className="flex flex-col sm:flex-row items-center justify-center space-y-6 sm:space-y-0 sm:space-x-8">
                                     <Button variant="gold" onClick={() => scrollTo('contact')}>Obtenir un premier échange</Button>
@@ -284,7 +292,7 @@
                             <div className="max-w-5xl mx-auto text-center mb-32">
                                 <RevealOnScroll>
                                     <span className="text-gold text-[10px] font-bold tracking-[0.5em] uppercase mb-8 block">Notre Positionnement</span>
-                                    <h2 className="font-serif text-4xl md:text-6xl mb-12 leading-tight text-navy">Un cabinet orienté <span className="italic text-gold underline decoration-gold/20 underline-offset-8">résultats et sécurité</span>.</h2>
+                                    <span className="font-bold text-gold underline decoration-gold/20 underline-offset-8">résultats et sécurité</span>.
                                     <p className="text-stone-500 text-xl font-light leading-relaxed max-w-3xl mx-auto">
                                         Nous combinons maîtrise du droit congolais, standards internationaux et intelligence terrain pour transformer les risques réglementaires en décisions maîtrisées et créatrices de valeur.
                                     </p>
@@ -304,7 +312,7 @@
                                 <RevealOnScroll delay={200}>
                                     <div className="space-y-12">
                                         <div>
-                                            <h3 className="font-serif text-3xl mb-6 text-navy">Un accompagnement de direction.</h3>
+                                <h3 className="font-sans font-bold text-3xl mb-6 text-navy">Un accompagnement de direction.</h3>
                                             <p className="text-stone-600 text-lg font-light leading-relaxed">Nous intervenons de la structuration initiale jusqu'aux arbitrages sensibles, avec une lecture business et une exécution juridique exigeante.</p>
                                         </div>
                                         <div className="grid gap-10">
@@ -318,7 +326,7 @@
                                                         <span className="w-2 h-2 bg-gold rounded-full group-hover:scale-150 transition-transform"></span>
                                                     </div>
                                                     <div>
-                                                        <h4 className="text-sm font-bold uppercase tracking-widest mb-2 text-navy group-hover:text-gold transition-colors">{item.t}</h4>
+                                        <h4 className="text-sm font-bold uppercase tracking-widest mb-2 text-navy group-hover:text-gold transition-colors font-sans">{item.t}</h4>
                                                         <p className="text-stone-500 text-sm font-light leading-relaxed">{item.d}</p>
                                                     </div>
                                                 </div>
@@ -339,7 +347,7 @@
                             <RevealOnScroll>
                                 <div className="text-center mb-32">
                                     <span className="text-gold text-[10px] font-bold tracking-[0.5em] uppercase mb-8 block">Domaines d'intervention</span>
-                                    <h2 className="font-serif text-4xl md:text-6xl text-navy italic">Deux expertises phares, une même exigence.</h2>
+                                    <h2 className="font-sans font-bold text-4xl md:text-6xl text-navy">Deux expertises phares, une même exigence.</h2>
                                 </div>
                             </RevealOnScroll>
                             
@@ -350,7 +358,7 @@
                                 ].map((s, i) => (
                                     <div key={i} className="bg-white p-12 hover:bg-navy group transition-all duration-700 cursor-pointer" onClick={() => window.location.href = s.href} role="button" tabIndex={0} onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); window.location.href = s.href; } }}>
                                         <div className="text-4xl mb-8 opacity-40 group-hover:opacity-100 transition-opacity grayscale group-hover:grayscale-0">{s.icon}</div>
-                                        <h4 className="font-serif text-2xl mb-4 group-hover:text-gold transition-colors text-navy">{s.t}</h4>
+                                        <h4 className="font-sans font-bold text-2xl mb-4 group-hover:text-gold transition-colors text-navy">{s.t}</h4>
                                         <p className="text-stone-500 text-sm font-light leading-relaxed group-hover:text-white/70 transition-colors">{s.d}</p>
                                         <div className="mt-8 pt-8 border-t border-stone-50 flex items-center text-gold opacity-0 group-hover:opacity-100 -translate-x-4 group-hover:translate-x-0 transition-all duration-700">
                                             <span className="text-[10px] font-bold uppercase tracking-widest mr-4">Voir le détail</span>
@@ -468,7 +476,7 @@
                                 <RevealOnScroll>
                                     <div className="bg-white p-12 lg:p-16 rounded-3xl shadow-sm border border-stone-100 hover:shadow-2xl transition-all duration-700 group cursor-pointer h-full flex flex-col" onClick={() => window.location.href='droit-minier.html'}>
                                         <div className="text-gold mb-10 transform group-hover:-translate-y-2 transition-transform duration-500"><MiningIcon /></div>
-                                        <h3 className="font-serif text-2xl lg:text-3xl mb-6">Pôle Droit Minier</h3>
+                                        <h3 className="font-sans font-bold text-2xl lg:text-3xl mb-6">Pôle Droit Minier</h3>
                                         <p className="text-stone-500 mb-10 font-light leading-relaxed">Sécurisation des titres, conformité réglementaire et structuration juridique pour maximiser la rentabilité de vos actifs miniers en RDC.</p>
                                         <ul className="space-y-4 mb-12 flex-grow overflow-hidden text-xs font-semibold tracking-widest text-stone-400 uppercase">
                                             <li className="flex items-center space-x-3"><span className="w-1 h-1 bg-gold"></span><span>Titres & Permis</span></li>
@@ -485,7 +493,7 @@
                                 <RevealOnScroll delay={200}>
                                     <div className="bg-charcoal text-white p-12 lg:p-16 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-700 group cursor-pointer h-full flex flex-col" onClick={() => window.location.href='droit-des-affaires.html'}>
                                         <div className="text-gold mb-10 transform group-hover:-translate-y-2 transition-transform duration-500"><BusinessIcon /></div>
-                                        <h3 className="font-serif text-2xl lg:text-3xl mb-6">Pôle Droit des Affaires</h3>
+                                        <h3 className="font-sans font-bold text-2xl lg:text-3xl mb-6">Pôle Droit des Affaires</h3>
                                         <p className="text-stone-400 mb-10 font-light leading-relaxed">Bâtir des structures solides et juridiquement sécurisées (OHADA) pour soutenir votre croissance et gérer vos risques commerciaux.</p>
                                         <ul className="space-y-4 mb-12 flex-grow overflow-hidden text-xs font-semibold tracking-widest text-stone-500 uppercase">
                                             <li className="flex items-center space-x-3"><span className="w-1 h-1 bg-gold"></span><span>Sociétés & Structuration</span></li>
@@ -508,7 +516,7 @@
                             <div className="grid lg:grid-cols-2 gap-24 items-center">
                                 <RevealOnScroll>
                                     <span className="text-gold text-[10px] font-bold tracking-[0.4em] uppercase mb-6 block">Vision Holistique</span>
-                                    <h2 className="font-serif text-4xl md:text-5xl mb-10 leading-tight">Une expertise <span className="italic">stratégique</span> de haut niveau.</h2>
+                                    <h2 className="font-sans font-bold text-4xl md:text-5xl mb-10 leading-tight">Une expertise <span className="font-bold">stratégique</span> de haut niveau.</h2>
                                     <p className="text-stone-600 mb-12 font-light leading-relaxed text-lg">Dans un environnement comme la RDC, notre cabinet se positionne comme un partenaire stratégique indispensable. Nous ne faisons pas que conseiller — nous sécurisons et optimisons vos décisions les plus sensibles.</p>
                                     <div className="grid sm:grid-cols-2 gap-10">
                                         {[
@@ -551,7 +559,7 @@
                                 <div className="lg:w-1/3">
                                     <RevealOnScroll>
                                         <span className="text-gold text-[10px] font-bold tracking-[0.4em] uppercase mb-6 block">Localisation</span>
-                                        <h2 className="font-serif text-4xl mb-8 leading-tight">Au cœur du<br/><span className="italic">bassin minier.</span></h2>
+                                        <h2 className="font-sans font-bold text-4xl mb-8 leading-tight">Au cœur du<br/><span className="font-bold">bassin minier.</span></h2>
                                         <p className="text-stone-600 mb-10 font-light leading-relaxed">Notre cabinet est stratégiquement situé à Lubumbashi, épicentre de l'activité minière en RDC, pour une réactivité optimale auprès des institutions et des sites d'exploitation.</p>
                                         <div className="space-y-4">
                                             <p className="text-sm font-bold uppercase tracking-widest text-gold italic">Cabinet JBK</p>
@@ -561,13 +569,13 @@
                                 </div>
                                 <div className="lg:w-2/3 w-full h-[500px] rounded-[40px] overflow-hidden shadow-2xl border border-stone-200">
                                     <iframe 
-                                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15632.748530492212!2d27.47!3d-11.66!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x19723eea992d9a9f%3A0xe5a3c98899534bc0!2sLubumbashi%2C%20Democratic%20Republic%20of%20the%20Congo!5e0!3m2!1sen!2s!4v1700000000000!5m2!1sen!2s" 
+                                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3976.4!2d27.4754!3d-11.6632!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTeCsDAzJzQ3LjciUyAyN8KwMjgnMzMuNyJF!5e0!3m2!1sfr!2s!4v1728562789895!5m2!1sfr!2s" 
                                         width="100%" 
                                         height="100%" 
                                         style={{ border: 0 }} 
                                         allowFullScreen="" 
                                         loading="lazy"
-                                        title="Localisation Cabinet JBK"
+                                        title="Localisation Cabinet JBK - Avenue Maniema coin Kambove"
                                     ></iframe>
                                 </div>
                             </div>
@@ -643,6 +651,14 @@
                                         <li className="flex items-center">
                                             <span className="text-gold mr-4">✉️</span>
                                             <a href="mailto:info@cabinetjkb.com" className="hover:text-gold transition-colors">info@cabinetjkb.com</a>
+                                        </li>
+                                        <li className="flex items-center justify-center space-x-4 pt-4 border-t border-white/10">
+                                          <a href="https://www.linkedin.com/company/cabinet-jbk" className="hover:text-gold transition-colors text-xl" target="_blank" rel="noopener" aria-label="LinkedIn">
+                                            <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                                          </a>
+                                          <a href="https://www.facebook.com/cabinetjkb" className="hover:text-gold transition-colors text-xl" target="_blank" rel="noopener" aria-label="Facebook">
+                                            <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                                          </a>
                                         </li>
                                     </ul>
                                 </div>
