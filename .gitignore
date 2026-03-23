@@ -1,0 +1,8 @@
+# Git Ignore
+.gemini/
+brain/
+migrate.js
+migrate2.js
+TODO.md
+*.log
+.DS_Store
