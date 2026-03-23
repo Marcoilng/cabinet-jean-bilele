@@ -3,118 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Le Cabinet | Cabinet d'Avocat Jean Bilele Kasongo | Lubumbashi</title>
+    <title>Le Cabinet | Cabinet Jean Bilele Kasongo</title>
     
-    <!-- React & ReactDOM -->
     <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-    
-    <!-- Babel pour le JSX -->
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 
-    <!-- Configuration Tailwind personnalisée -->
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: {
-                        sans: ['Lato', 'sans-serif'],
-                        serif: ['Playfair Display', 'serif'],
-                    },
-                    colors: {
-                        'ivory': '#FAFAFA',
-                        'charcoal': '#0A0A0A',
-                        'gold': '#D4AF37',
-                        'gold-dark': '#B8962E',
-                    },
-                    animation: {
-                        'fade-in-up': 'fadeInUp 0.6s ease-out forwards',
-                        'bounce-subtle': 'bounceSubtle 2s infinite',
-                        'pulse-slow': 'pulse 10s infinite',
-                    },
-                    keyframes: {
-                        fadeInUp: {
-                            '0%': { opacity: '0', transform: 'translateY(30px)' },
-                            '100%': { opacity: '1', transform: 'translateY(0)' },
-                        },
-                        bounceSubtle: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-5px)' },
-                        },
-                    },
+                    fontFamily: { sans: ['Montserrat', 'sans-serif'], serif: ['Playfair Display', 'serif'] },
+                    colors: { 'ivory': '#FDFBF7', 'charcoal': '#121212', 'gold': '#C5A059' }
                 }
             }
         }
     </script>
-
-    <style>
-        html { scroll-behavior: smooth; }
-        body { background-color: #FDFBF7; color: #333333; -webkit-font-smoothing: antialiased; }
-        ::-webkit-scrollbar { width: 8px; }
-    </style>
 </head>
-<body>
+<body class="bg-ivory text-charcoal selection:bg-gold selection:text-white">
     <div id="root"></div>
 
     <script type="text/babel">
-        const { useState, useEffect, useRef } = React;
-
-        // Icons
-        const Star = (props) => (
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" {...props}><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-        );
-        const Shield = (props) => (
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" {...props}><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        );
-        const Coffee = (props) => (
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" {...props}><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
-        );
-
-        const RevealOnScroll = ({ children, delay = 0 }) => {
-            const [isVisible, setIsVisible] = useState(false);
-            const ref = useRef(null);
-            useEffect(() => {
-                const observer = new IntersectionObserver(([entry]) => {
-                    if (entry.isIntersecting) { setIsVisible(true); observer.unobserve(entry.target); }
-                }, { threshold: 0.1 });
-                if (ref.current) observer.observe(ref.current);
-                return () => { if (ref.current) observer.unobserve(ref.current); };
-            }, []);
-            return (
-                <div ref={ref} className={`transition-all duration-1000 transform ${isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-16 scale-95'}`} style={{ transitionDelay: `${delay}ms` }}>
-                    {children}
-                </div>
-            );
-        };
-
-        const SectionTitle = ({ title, subtitle, align = "center" }) => (
-            <div className={`mb-16 text-${align}`}>
-                <span className="block text-gold text-xs font-bold tracking-[0.2em] uppercase mb-4">{subtitle}</span>
-                <h2 className="font-serif text-3xl md:text-4xl text-charcoal leading-tight">{title}</h2>
-                <div className={`mt-6 h-[1px] w-16 bg-gold ${align === 'center' ? 'mx-auto' : ''} opacity-60`}></div>
-            </div>
-        );
+        const { useState, useEffect } = React;
 
         const Button = ({ children, variant = "primary", onClick, className = "" }) => {
-            const baseStyle = "inline-flex items-center justify-center px-8 py-4 rounded-full text-xs font-bold tracking-[0.15em] uppercase transition-all duration-500 cursor-pointer hover:scale-105 shadow-md";
+            const base = "inline-flex items-center justify-center px-10 py-5 rounded-full text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase transition-all duration-500 cursor-pointer shadow-lg active:scale-95";
             const variants = {
                 primary: "bg-charcoal text-white hover:bg-gold border border-charcoal hover:border-gold",
                 gold: "bg-gold text-white hover:bg-gold-dark border border-gold"
             };
-            return <button onClick={onClick} className={`${baseStyle} ${variants[variant]} ${className}`}>{children}</button>;
+            return <button onClick={onClick} className={`${base} ${variants[variant]} ${className}`}>{children}</button>;
         };
 
         function App() {
             const [scrolled, setScrolled] = useState(false);
-            const [menuOpen, setMenuOpen] = useState(false);
             useEffect(() => {
                 const handleScroll = () => setScrolled(window.scrollY > 50);
                 window.addEventListener('scroll', handleScroll);
@@ -122,118 +46,94 @@
             }, []);
 
             return (
-                <div className="bg-ivory min-h-screen font-sans text-charcoal selection:bg-gold selection:text-white overflow-x-hidden">
-                    <nav className={`fixed w-full z-50 transition-all duration-700 ${scrolled ? 'bg-white/95 backdrop-blur-md py-4 shadow-sm' : 'bg-transparent py-8'}`}>
-                        <div className="container mx-auto px-6 flex justify-between items-center">
-                            <div className="z-50 cursor-pointer" onClick={() => window.location.href = 'index.html'}>
-                                <div className="font-serif text-2xl tracking-tighter text-charcoal">J<span className="text-gold">.</span>B<span className="text-gold">.</span>K</div>
+                <div className="min-h-screen">
+                    <nav className={`fixed w-full z-50 transition-all duration-700 ${scrolled ? 'bg-white/95 backdrop-blur-xl py-4 shadow-xl' : 'bg-transparent py-8'}`}>
+                        <div class="container mx-auto px-6 flex justify-between items-center">
+                            <div class="cursor-pointer" onClick={() => window.location.href = 'index.html'}>
+                                <div class="font-serif text-2xl tracking-tighter">J<span class="text-gold">.</span>B<span class="text-gold">.</span>K</div>
                             </div>
-                            <div className="hidden md:flex items-center space-x-10">
-                                <button onClick={() => window.location.href = 'index.html#le-cabinet'} className="text-xs font-bold tracking-[0.15em] uppercase hover:text-gold transition-colors">Le Cabinet</button>
-                                <button onClick={() => window.location.href = 'index.html#expertise'} className="text-xs font-bold tracking-[0.15em] uppercase hover:text-gold transition-colors">Expertise</button>
-                                <button onClick={() => window.location.href = 'index.html#honoraires'} className="text-xs font-bold tracking-[0.15em] uppercase hover:text-gold transition-colors">Honoraires</button>
-                                <button onClick={() => window.location.href = 'index.html#contact'} className="text-xs font-bold tracking-[0.15em] uppercase hover:text-gold transition-colors">Contact</button>
-                                <Button variant="primary" onClick={() => window.location.href = 'index.html#contact'}>Rendez-vous</Button>
+                            <div class="hidden md:flex items-center space-x-12">
+                                <a href="index.html" class="text-[11px] font-bold tracking-[0.2em] uppercase hover:text-gold transition-colors">Accueil</a>
+                                <a href="droit-minier.html" class="text-[11px] font-bold tracking-[0.2em] uppercase hover:text-gold transition-colors">Droit Minier</a>
+                                <a href="droit-des-affaires.html" class="text-[11px] font-bold tracking-[0.2em] uppercase hover:text-gold transition-colors">Droit des Affaires</a>
+                                <Button variant="primary" className="px-6 py-3" onClick={() => window.location.href='index.html#contact'}>Rendez-vous</Button>
                             </div>
-                            <div className="md:hidden z-50">
-                                <button onClick={() => setMenuOpen(!menuOpen)} className="text-charcoal focus:outline-none">
-                                    <div className="space-y-2">
-                                        <span className={`block w-8 h-0.5 bg-current transition-transform ${menuOpen ? 'rotate-45 translate-y-2.5' : ''}`}></span>
-                                        <span className={`block w-8 h-0.5 bg-current transition-opacity ${menuOpen ? 'opacity-0' : ''}`}></span>
-                                        <span className={`block w-8 h-0.5 bg-current transition-transform ${menuOpen ? '-rotate-45 -translate-y-2.5' : ''}`}></span>
-                                    </div>
-                                </button>
-                            </div>
-                        </div>
-                        <div className={`fixed inset-0 bg-ivory/95 backdrop-blur-xl flex flex-col justify-center items-center space-y-10 transition-all duration-700 ease-in-out ${menuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
-                            {[
-                                { name: 'Le Cabinet', link: 'le-cabinet.html' },
-                                { name: 'Expertise', link: 'index.html#expertise' },
-                                { name: 'Honoraires', link: 'index.html#honoraires' },
-                                { name: 'Contact', link: 'index.html#contact' }
-                            ].map((item, idx) => (
-                                <button
-                                    key={item.name}
-                                    onClick={() => window.location.href = item.link}
-                                    className={`font-serif text-4xl text-charcoal transition-all duration-500 transform ${menuOpen ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
-                                    style={{ transitionDelay: `${idx * 100}ms` }}
-                                >
-                                    {item.name}
-                                </button>
-                            ))}
                         </div>
                     </nav>
 
-                    <section id="home" className="relative h-screen flex items-center justify-center overflow-hidden">
-                        <div className="absolute inset-0 bg-charcoal">
-                            <img src="images/law-statue.jpg" alt="Le Cabinet" className="object-cover w-full h-full opacity-30 mix-blend-luminosity scale-110 animate-pulse-slow" />
-                            <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/40 to-transparent"></div>
+                    {/* Header */}
+                    <header class="relative pt-64 pb-20 bg-ivory">
+                        <div class="container mx-auto px-6">
+                            <span class="text-gold text-[10px] font-bold tracking-[0.5em] uppercase mb-8 block">Institution Juridique</span>
+                            <h1 class="font-serif text-6xl md:text-8xl mb-12 italic border-b border-stone-100 pb-12">Le Cabinet.</h1>
                         </div>
-                        <div className="container mx-auto px-6 relative z-10 text-center">
-                            <RevealOnScroll>
-                                <span className="inline-block text-gold text-xs font-bold tracking-[0.3em] uppercase mb-6 bg-white/5 py-2 px-6 rounded-full backdrop-blur-sm border border-gold/20">Excellence & Tradition</span>
-                                <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl text-ivory mb-8 leading-[1.1]">Le <br/><span className="italic font-light text-gold">Cabinet</span></h1>
-                                <p className="text-stone-400 text-lg md:text-xl max-w-2xl mx-auto mb-12 font-light">Une institution juridique dédiée à la défense de vos intérêts avec rigueur et intégrité à Lubumbashi.</p>
-                            </RevealOnScroll>
-                        </div>
-                        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 animate-bounce-subtle">
-                            <div className="w-[1px] h-12 bg-gradient-to-b from-gold to-transparent"></div>
-                        </div>
-                    </section>
+                    </header>
 
-                    <section className="py-24 md:py-32">
-                        <div className="container mx-auto px-6 md:px-12">
-                            <div className="grid md:grid-cols-2 gap-16 items-center">
-                                <RevealOnScroll>
-                                    <div className="relative aspect-[4/3] rounded-3xl bg-stone-200 overflow-hidden shadow-2xl">
-                                        <img src="images/presentation-cabinet.jpg" alt="Expertise" className="object-cover w-full h-full grayscale hover:grayscale-0 transition-all duration-1000 opacity-90" />
-                                        <div className="absolute inset-0 border border-gold/30 m-4 pointer-events-none rounded-2xl"></div>
+                    {/* Mission */}
+                    <section class="py-20 lg:py-32">
+                        <div class="container mx-auto px-6">
+                            <div class="grid lg:grid-cols-2 gap-24">
+                                <div class="space-y-12">
+                                    <h2 class="font-serif text-3xl md:text-4xl leading-tight">Expertise approfondie des réalités juridiques et économiques de la RDC.</h2>
+                                    <p class="text-stone-600 text-lg font-light leading-relaxed">Le Cabinet Maître Jean Bilele Kasongo est le partenaire privilégié des entreprises et investisseurs opérant en République Démocratique du Congo. Nous intervenons sur des dossiers à forte valeur ajoutée, où la précision juridique rencontre l'enjeu économique majeur.</p>
+                                    <p class="text-stone-600 text-lg font-light leading-relaxed">Nous nous distinguons par une approche orientée résultats : chaque dossier est traité comme un véritable enjeu stratégique. Notre mission est de transformer la complexité du cadre légal congolais en un levier de croissance pour nos clients.</p>
+                                </div>
+                                <div class="bg-charcoal text-white p-12 lg:p-20 rounded-[40px] shadow-2xl relative overflow-hidden">
+                                    <div class="absolute top-0 right-0 w-64 h-64 bg-gold/10 blur-3xl rounded-full"></div>
+                                    <h3 class="font-serif text-2xl text-gold mb-10 italic">Nos Valeurs</h3>
+                                    <div class="space-y-10">
+                                        {[
+                                            { t: "Excellence", d: "Une rigueur absolue dans la rédaction et le conseil." },
+                                            { t: "Réactivité", d: "Un accompagnement en temps réel pour vos projets critiques." },
+                                            { t: "Indépendance", d: "Un conseil libre et intègre face aux autorités." },
+                                            { t: "Confidentialité", d: "La sécurité absolue de vos informations stratégiques." }
+                                        ].map((v, i) => (
+                                            <div key={i}>
+                                                <h4 class="text-xs font-bold uppercase tracking-widest text-gold mb-2">{v.t}</h4>
+                                                <p class="text-stone-400 text-sm font-light">{v.d}</p>
+                                            </div>
+                                        ))}
                                     </div>
-                                </RevealOnScroll>
-                                <RevealOnScroll delay={200}>
-                                    <span className="block text-gold text-xs font-bold tracking-[0.2em] uppercase mb-6">Notre Histoire</span>
-                                    <h2 className="font-serif text-3xl md:text-4xl mb-8">Plus qu'un conseil, <br/>un Partenaire.</h2>
-                                    <p className="text-stone-600 mb-6 font-light leading-relaxed">Fondé sur des valeurs de probité et d'excellence, le Cabinet Jean Bilele Kasongo s'est imposé comme une référence juridique à Lubumbashi. Nous plaçons l'humain au cœur de notre pratique.</p>
-                                    <p className="text-stone-600 mb-10 font-light leading-relaxed">Chaque dossier est traité avec une attention méticuleuse, alliant une analyse juridique pointue à une compréhension fine des enjeux de nos clients.</p>
-                                </RevealOnScroll>
+                                </div>
                             </div>
                         </div>
                     </section>
 
-                    <section className="py-24 bg-[#F5F3EF]">
-                        <div className="container mx-auto px-6">
-                            <SectionTitle title="Nos Valeurs" subtitle="L'ADN du Cabinet" />
-                            <div className="grid md:grid-cols-3 gap-8 text-center">
+                    {/* Pour qui */}
+                    <section class="py-32 bg-stone-50">
+                        <div class="container mx-auto px-6">
+                            <div class="text-center mb-24">
+                                <h2 class="font-serif text-4xl mb-6 italic">Ils nous font confiance.</h2>
+                                <p class="text-stone-500 font-light">Nous accompagnons un spectre large d'acteurs de premier plan.</p>
+                            </div>
+                            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
                                 {[
-                                    { title: "Rigueur", icon: <Shield />, desc: "Une précision absolue dans l'analyse de chaque point de droit." },
-                                    { title: "Disponibilité", icon: <Coffee />, desc: "Une écoute active et une présence constante à vos côtés." },
-                                    { title: "Indépendance", icon: <Star />, desc: "Une liberté de conseil totale pour servir au mieux vos intérêts." }
-                                ].map((item, idx) => (
-                                    <RevealOnScroll key={idx} delay={idx * 100}>
-                                        <div className="bg-white p-10 rounded-3xl border border-stone-200 hover:border-gold transition-all shadow-sm">
-                                            <div className="text-gold mb-6 flex justify-center transform hover:scale-110 transition-transform">{item.icon}</div>
-                                            <h3 className="font-serif text-xl mb-4">{item.title}</h3>
-                                            <p className="text-sm text-stone-500 leading-relaxed font-light">{item.desc}</p>
-                                        </div>
-                                    </RevealOnScroll>
+                                    { t: "Sociétés Minières", d: "Exploitants, comptoirs et sous-traitants." },
+                                    { t: "Investisseurs Étrangers", d: "Fonds, banques et holdings internationaux." },
+                                    { t: "Groupes Locaux", d: "Entreprises en phase d'expansion OHADA." },
+                                    { t: "Institutions", d: "Organisations et agences d'investissement." }
+                                ].map((item, i) => (
+                                    <div key={i} class="p-10 bg-white border border-stone-100 rounded-3xl hover:border-gold transition-all duration-500">
+                                        <h4 class="font-serif text-xl border-stone-100 mb-4">{item.t}</h4>
+                                        <p class="text-stone-400 text-sm font-light leading-relaxed">{item.d}</p>
+                                    </div>
                                 ))}
                             </div>
                         </div>
                     </section>
 
-                    <footer className="bg-[#0a0a0a] text-stone-600 py-16 border-t border-white/5">
-                        <div className="container mx-auto px-6 text-center md:text-left">
-                            <div className="flex flex-col md:flex-row justify-between items-center mb-12">
-                                <div className="font-serif text-2xl tracking-tighter text-stone-300">J<span className="text-gold">.</span>B<span className="text-gold">.</span>K</div>
-                                <div className="flex space-x-8 text-xs font-bold tracking-widest uppercase mt-6 md:mt-0">
-                                    <a href="index.html" className="hover:text-gold transition-colors">Accueil</a>
-                                    <a href="#" className="hover:text-gold transition-colors">Mentions Légales</a>
-                                </div>
-                            </div>
-                            <div className="pt-8 text-xs font-light border-t border-white/5 flex flex-col md:flex-row justify-between items-center">
-                                <p className="opacity-50">Lubumbashi, Haut-Katanga, RDC</p>
-                                <p className="opacity-50 mt-4 md:mt-0 italic">Conçu par <a href="https://marcoilng.netlify.app" target="_blank" className="text-gold hover:text-white transition-colors">Marco ILUNGA</a></p>
-                            </div>
+                    {/* Signature */}
+                    <section class="py-32 bg-ivory text-center">
+                        <div class="container mx-auto px-6">
+                            <p class="font-serif text-2xl lg:text-3xl text-charcoal italic mb-12">"Parce que votre succès en RDC exige la meilleure architecture juridique."</p>
+                            <Button variant="primary" onClick={() => window.location.href='index.html#contact'}>Engager une collaboration</Button>
+                        </div>
+                    </section>
+
+                    <footer class="bg-charcoal py-20 text-stone-500">
+                        <div class="container mx-auto px-6 text-center">
+                            <div class="font-serif text-2xl tracking-tighter text-stone-300 mb-8">J<span class="text-gold">.</span>B<span class="text-gold">.</span>K</div>
+                            <p class="text-[10px] font-bold tracking-[0.3em] uppercase">Cabinet Maître Jean Bilele Kasongo</p>
                         </div>
                     </footer>
                 </div>

@@ -1,18 +1,18 @@
-# Cabinet d'Avocat Jean Bilele Kasongo - Lubumbashi
+# Cabinet Maître Jean Bilele Kasongo - Expert en Droit Minier & Droit des Affaires
 
-Ce dépôt contient le site web officiel du **Cabinet Jean Bilele Kasongo**, une institution juridique de référence située à Lubumbashi, République Démocratique du Congo.
+Ce dépôt contient le site web vitrine du **Cabinet JBK**, spécialisé dans l'accompagnement stratégique et la sécurisation juridique des entreprises et investisseurs en République Démocratique du Congo.
 
-## 🌟 Aperçu du Projet
+## 🚀 Vision Stratégique
+"Dans un environnement complexe, la sécurité juridique n’est pas une option — c’est un avantage stratégique."
 
-Le site a été conçu pour offrir une expérience utilisateur premium, alliant élégance visuelle et rigueur professionnelle. Il présente les domaines d'expertise du cabinet ainsi que ses valeurs fondamentales.
+## ⛏️ Pôles d'Excellence
+- **Droit Minier** : Titres miniers, conformité réglementaire, assistance administrative, contrats et contentieux.
+- **Droit des Affaires** : Structuration de sociétés, OHADA, joint-ventures, investissements étrangers et litiges commerciaux.
 
-## 🚀 Caractéristiques Techniques
-
-- **Frontend** : HTML5, CSS3, JavaScript (React & Babel auto-standalone).
-- **Styling** : Tailwind CSS (Configuration personnalisée pour une identité visuelle unique).
-- **Animations** : Reveal-on-scroll et micro-interactions fluides.
-- **Responsive Design** : Optimisation complète pour mobiles, tablettes et ordinateurs.
-- **Identité Visuelle** : Palette "Gold & Charcoal" (Or et Anthracite) symbolisant l'excellence et l'intégrité.
+## 🛠️ Caractéristiques Techniques
+- **Frontend** : HTML5, Tailwind CSS, React (Standalone via Babel).
+- **Design** : Corporate Luxury, Minimaliste, Responsive.
+- **Animations** : Reveal on Scroll, Transitions fluides.
 
 ## ⚖️ Domaines d'Expertise
 
