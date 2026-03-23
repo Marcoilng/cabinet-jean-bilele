@@ -19,7 +19,9 @@
                         'ivory': '#FDFBF7', 
                         'charcoal': '#121212', 
                         'gold': '#C5A059',
-                        'gold-dark': '#A8843A',
+'gold-dark': '#A8843A',
+                        'blue': '#1E40AF',
+                        'blue-dark': '#1E3A8A',
                         'navy': '#002147',
                         'navy-light': '#003366',
                         'gold-light': '#D4AF37'
@@ -120,10 +122,10 @@
                         </div>
                     </div>
 
-                    <nav className={`relative fixed top-0 w-full z-50 transition-all duration-500 ${scrolled ? 'bg-navy/95 py-3 shadow-xl' : 'bg-transparent py-4'}`}>
-                        <div className="container mx-auto px-6 flex justify-between items-center text-white">
+<nav className={`relative fixed top-0 w-full z-50 transition-all duration-500 ${scrolled ? 'bg-blue/95 py-3 shadow-xl backdrop-blur-md' : 'bg-transparent py-4'}`}>
+                        <div className="container mx-auto px-6 flex justify-between items-center text-blue">
                             <div className="z-50 cursor-pointer" onClick={() => window.location.href = 'index.html'}>
-                                <div className="font-serif text-3xl tracking-tighter">J<span className="text-gold">.</span>B<span className="text-gold">.</span>K</div>
+                                <div className="font-serif text-3xl tracking-tighter text-white">J<span className="text-gold">.</span>B<span className="text-gold">.</span>K</div>
                             </div>
                             <div className="hidden lg:flex items-center space-x-12">
                                 <a href="index.html" className="text-[11px] font-bold tracking-[0.2em] uppercase hover:text-gold transition-all duration-300 relative group">
@@ -165,8 +167,8 @@
                             </button>
                         </div>
 
-                        {menuOpen && (
-                            <div className="absolute left-0 right-0 top-full bg-navy text-white border-t border-white/10 shadow-2xl lg:hidden">
+{menuOpen && (
+                            <div className="absolute left-0 right-0 top-full bg-blue text-blue border-t border-blue/20 shadow-2xl lg:hidden">
                                 <div className="container mx-auto px-6 py-5">
                                     <div className="flex items-center justify-between mb-4">
                                         <div className="font-serif text-xl tracking-tighter">Navigation</div>
@@ -387,7 +389,7 @@
                                 </div>
                             </div>
                             <div className="pt-12 border-t border-white/5 text-center text-[10px] font-bold uppercase tracking-widest text-white/30">
-                                <p>&copy; 2026 Cabinet JBK. Tous droits réservés.</p>
+&copy; 2024 Cabinet JBK. Tous droits réservés.
                             </div>
                         </div>
                     </footer>
