@@ -1,10 +1,9 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Le Cabinet | Cabinet Jean Bilele Kasongo</title>
     
+    <!-- SEO & Security -->
+    <meta name="description" content="Découvrez la vision et les valeurs du Cabinet Maître Jean Bilele Kasongo, partenaire stratégique en RDC.">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' unpkg.com cdn.tailwindcss.com fonts.googleapis.com fonts.gstatic.com; script-src 'self' 'unsafe-inline' 'unsafe-eval' unpkg.com cdn.tailwindcss.com; style-src 'self' 'unsafe-inline' fonts.googleapis.com; font-src 'self' fonts.gstatic.com; img-src 'self' data:;">
+
     <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -16,7 +15,14 @@
             theme: {
                 extend: {
                     fontFamily: { sans: ['Montserrat', 'sans-serif'], serif: ['Playfair Display', 'serif'] },
-                    colors: { 'ivory': '#FDFBF7', 'charcoal': '#121212', 'gold': '#C5A059' }
+                    colors: { 
+                        'ivory': '#FDFBF7', 
+                        'charcoal': '#121212', 
+                        'gold': '#C5A059',
+                        'navy': '#002147',
+                        'navy-light': '#003366',
+                        'gold-light': '#D4AF37'
+                    }
                 }
             }
         }
@@ -26,15 +32,31 @@
     <div id="root"></div>
 
     <script type="text/babel">
-        const { useState, useEffect } = React;
+        const RevealOnScroll = ({ children, delay = 0 }) => {
+            const [isVisible, setIsVisible] = useState(false);
+            const ref = React.useRef(null);
 
-        const Button = ({ children, variant = "primary", onClick, className = "" }) => {
-            const base = "inline-flex items-center justify-center px-10 py-5 rounded-full text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase transition-all duration-500 cursor-pointer shadow-lg active:scale-95";
-            const variants = {
-                primary: "bg-charcoal text-white hover:bg-gold border border-charcoal hover:border-gold",
-                gold: "bg-gold text-white hover:bg-gold-dark border border-gold"
-            };
-            return <button onClick={onClick} className={`${base} ${variants[variant]} ${className}`}>{children}</button>;
+            useEffect(() => {
+                const observer = new IntersectionObserver(
+                    ([entry]) => {
+                        if (entry.isIntersecting) {
+                            setTimeout(() => setIsVisible(true), delay);
+                        }
+                    },
+                    { threshold: 0.1 }
+                );
+
+                if (ref.current) observer.observe(ref.current);
+                return () => {
+                    if (ref.current) observer.unobserve(ref.current);
+                };
+            }, [delay]);
+
+            return (
+                <div ref={ref} className={`transition-all duration-1000 transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}`}>
+                    {children}
+                </div>
+            );
         };
 
         function App() {
@@ -45,43 +67,81 @@
                 return () => window.removeEventListener('scroll', handleScroll);
             }, []);
 
-            return (
-                <div className="min-h-screen">
-                    <nav className={`fixed w-full z-50 transition-all duration-700 ${scrolled ? 'bg-white/95 backdrop-blur-xl py-4 shadow-xl' : 'bg-transparent py-8'}`}>
-                        <div class="container mx-auto px-6 flex justify-between items-center">
-                            <div class="cursor-pointer" onClick={() => window.location.href = 'index.html'}>
-                                <div class="font-serif text-2xl tracking-tighter">J<span class="text-gold">.</span>B<span class="text-gold">.</span>K</div>
+             return (
+                <div className="min-h-screen font-sans bg-[#f8f9fa]">
+                    {/* Top Contact Bar */}
+                    <div className="bg-navy py-2 text-white/70 text-[10px] sm:text-[11px] font-bold tracking-widest hidden md:block">
+                        <div className="container mx-auto px-6 flex justify-between items-center">
+                            <div className="flex space-x-8">
+                                <a href="tel:+243851305152" className="flex items-center hover:text-gold transition-colors">
+                                    <svg className="mr-2" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.81 12.81 0 00.63 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l2.28-2.28a2 2 0 012.11-.45 12.84 12.84 0 002.81.63A2 2 0 0122 16.92z"/></svg>
+                                    +243 85 130 51 52
+                                </a>
+                                <a href="mailto:info@cabinetjkb.com" className="flex items-center hover:text-gold transition-colors">
+                                    <svg className="mr-2" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                                    info@cabinetjkb.com
+                                </a>
                             </div>
-                            <div class="hidden md:flex items-center space-x-12">
-                                <a href="index.html" class="text-[11px] font-bold tracking-[0.2em] uppercase hover:text-gold transition-colors">Accueil</a>
-                                <a href="droit-minier.html" class="text-[11px] font-bold tracking-[0.2em] uppercase hover:text-gold transition-colors">Droit Minier</a>
-                                <a href="droit-des-affaires.html" class="text-[11px] font-bold tracking-[0.2em] uppercase hover:text-gold transition-colors">Droit des Affaires</a>
-                                <Button variant="primary" className="px-6 py-3" onClick={() => window.location.href='index.html#contact'}>Rendez-vous</Button>
+                            <div className="flex space-x-6">
+                                <a href="#" className="hover:text-gold transition-colors">LinkedIn</a>
+                                <a href="https://wa.me/243851305152" className="hover:text-gold transition-colors">WhatsApp</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <nav className={`fixed w-full z-50 transition-all duration-700 ${scrolled ? 'bg-navy py-4 shadow-xl top-0' : 'bg-transparent py-8 md:top-10'}`}>
+                        <div className="container mx-auto px-6 flex justify-between items-center text-white">
+                            <div className="z-50 cursor-pointer" onClick={() => window.location.href = 'index.html'}>
+                                <div className="font-serif text-3xl tracking-tighter">J<span className="text-gold">.</span>B<span className="text-gold">.</span>K</div>
+                            </div>
+                            <div className="hidden lg:flex items-center space-x-12">
+                                <a href="index.html" className="text-[11px] font-bold tracking-[0.2em] uppercase hover:text-gold transition-all duration-300 relative group">
+                                    Accueil
+                                    <span className="absolute -bottom-2 left-0 w-0 h-[1px] bg-gold group-hover:w-full transition-all duration-500"></span>
+                                </a>
+                                <a href="le-cabinet.html" className="text-[11px] font-bold tracking-[0.2em] uppercase hover:text-gold transition-all duration-300 relative group underline decoration-gold underline-offset-8">
+                                    Le Cabinet
+                                </a>
+                                <a href="droit-minier.html" className="text-[11px] font-bold tracking-[0.2em] uppercase hover:text-gold transition-all duration-300 relative group">
+                                    Expertise Minière
+                                    <span className="absolute -bottom-2 left-0 w-0 h-[1px] bg-gold group-hover:w-full transition-all duration-500"></span>
+                                </a>
+                                <a href="droit-des-affaires.html" className="text-[11px] font-bold tracking-[0.2em] uppercase hover:text-gold transition-all duration-300 relative group">
+                                    Droit des Affaires
+                                    <span className="absolute -bottom-2 left-0 w-0 h-[1px] bg-gold group-hover:w-full transition-all duration-500"></span>
+                                </a>
+                                <Button variant="gold" className="px-8 py-4" onClick={() => window.location.href='index.html#contact'}>Consultation</Button>
                             </div>
                         </div>
                     </nav>
 
                     {/* Header */}
-                    <header class="relative pt-64 pb-20 bg-ivory">
-                        <div class="container mx-auto px-6">
-                            <span class="text-gold text-[10px] font-bold tracking-[0.5em] uppercase mb-8 block">Institution Juridique</span>
-                            <h1 class="font-serif text-6xl md:text-8xl mb-12 italic border-b border-stone-100 pb-12">Le Cabinet.</h1>
+                    <header className="relative pt-64 pb-32 overflow-hidden bg-navy text-white">
+                        <div className="absolute inset-0 opacity-10">
+                            <img src="images/corporate-boardroom.png" alt="Le Cabinet" className="w-full h-full object-cover animate-subtle-zoom" />
+                        </div>
+                        <div className="container mx-auto px-6 relative z-10">
+                            <RevealOnScroll>
+                                <span className="text-gold text-[10px] font-bold tracking-[0.5em] uppercase mb-8 block font-sans">Institution Juridique</span>
+                                <h1 className="font-serif text-7xl md:text-9xl mb-12 italic tracking-tighter">Le Cabinet<span className="text-gold">.</span></h1>
+                                <p className="text-stone-400 text-lg font-light max-w-2xl leading-relaxed font-sans">Une empreinte d'excellence au cœur de la République Démocratique du Congo.</p>
+                            </RevealOnScroll>
                         </div>
                     </header>
 
                     {/* Mission */}
-                    <section class="py-20 lg:py-32">
-                        <div class="container mx-auto px-6">
-                            <div class="grid lg:grid-cols-2 gap-24">
-                                <div class="space-y-12">
-                                    <h2 class="font-serif text-3xl md:text-4xl leading-tight">Expertise approfondie des réalités juridiques et économiques de la RDC.</h2>
-                                    <p class="text-stone-600 text-lg font-light leading-relaxed">Le Cabinet Maître Jean Bilele Kasongo est le partenaire privilégié des entreprises et investisseurs opérant en République Démocratique du Congo. Nous intervenons sur des dossiers à forte valeur ajoutée, où la précision juridique rencontre l'enjeu économique majeur.</p>
-                                    <p class="text-stone-600 text-lg font-light leading-relaxed">Nous nous distinguons par une approche orientée résultats : chaque dossier est traité comme un véritable enjeu stratégique. Notre mission est de transformer la complexité du cadre légal congolais en un levier de croissance pour nos clients.</p>
+                    <section className="py-20 lg:py-32">
+                        <div className="container mx-auto px-6">
+                            <div className="grid lg:grid-cols-2 gap-24">
+                                <div className="space-y-12">
+                                    <h2 className="font-serif text-3xl md:text-4xl leading-tight text-navy">Expertise approfondie des réalités juridiques et économiques de la RDC.</h2>
+                                    <p className="text-stone-600 text-lg font-light leading-relaxed">Le Cabinet Maître Jean Bilele Kasongo est le partenaire privilégié des entreprises et investisseurs opérant en République Démocratique du Congo. Nous intervenons sur des dossiers à forte valeur ajoutée, où la précision juridique rencontre l'enjeu économique majeur.</p>
+                                    <p className="text-stone-600 text-lg font-light leading-relaxed">Nous nous distinguons par une approche orientée résultats : chaque dossier est traité comme un véritable enjeu stratégique. Notre mission est de transformer la complexité du cadre légal congolais en un levier de croissance pour nos clients.</p>
                                 </div>
-                                <div class="bg-charcoal text-white p-12 lg:p-20 rounded-[40px] shadow-2xl relative overflow-hidden">
-                                    <div class="absolute top-0 right-0 w-64 h-64 bg-gold/10 blur-3xl rounded-full"></div>
-                                    <h3 class="font-serif text-2xl text-gold mb-10 italic">Nos Valeurs</h3>
-                                    <div class="space-y-10">
+                                <div className="bg-navy text-white p-12 lg:p-20 rounded-[40px] shadow-2xl relative overflow-hidden">
+                                    <div className="absolute top-0 right-0 w-64 h-64 bg-gold/10 blur-3xl rounded-full"></div>
+                                    <h3 className="font-serif text-2xl text-gold mb-10 italic">Nos Valeurs</h3>
+                                    <div className="space-y-10">
                                         {[
                                             { t: "Excellence", d: "Une rigueur absolue dans la rédaction et le conseil." },
                                             { t: "Réactivité", d: "Un accompagnement en temps réel pour vos projets critiques." },
@@ -89,8 +149,8 @@
                                             { t: "Confidentialité", d: "La sécurité absolue de vos informations stratégiques." }
                                         ].map((v, i) => (
                                             <div key={i}>
-                                                <h4 class="text-xs font-bold uppercase tracking-widest text-gold mb-2">{v.t}</h4>
-                                                <p class="text-stone-400 text-sm font-light">{v.d}</p>
+                                                <h4 className="text-xs font-bold uppercase tracking-widest text-gold mb-2">{v.t}</h4>
+                                                <p className="text-white/50 text-sm font-light">{v.d}</p>
                                             </div>
                                         ))}
                                     </div>
@@ -99,23 +159,79 @@
                         </div>
                     </section>
 
-                    {/* Pour qui */}
-                    <section class="py-32 bg-stone-50">
-                        <div class="container mx-auto px-6">
-                            <div class="text-center mb-24">
-                                <h2 class="font-serif text-4xl mb-6 italic">Ils nous font confiance.</h2>
-                                <p class="text-stone-500 font-light">Nous accompagnons un spectre large d'acteurs de premier plan.</p>
+                    {/* Founder Detail */}
+                    <section className="py-32 bg-white">
+                        <div className="container mx-auto px-6">
+                            <div className="flex flex-col lg:flex-row gap-24 items-start">
+                                <div className="lg:w-1/3">
+                                    <RevealOnScroll delay={200}>
+                                        <span className="text-gold text-[10px] font-bold tracking-[0.4em] uppercase mb-6 block">Le Fondateur</span>
+                                        <h2 className="font-serif text-4xl mb-10 text-navy">Maître Jean Bilele Kasongo</h2>
+                                        <p className="text-stone-600 text-lg mb-8 font-light leading-relaxed italic">"Le droit est le socle sur lequel se bâtit l'émergence économique de la RDC."</p>
+                                        <p className="text-stone-600 text-lg mb-12 font-light leading-relaxed">Spécialiste reconnu en droit minier et des affaires, Maître Jean Bilele Kasongo cumule plus de 15 ans d'expérience dans l'accompagnement des grands projets d'investissement. Sa vision allie rigueur juridique et expertise opérationnelle.</p>
+                                        
+                                        <div className="grid grid-cols-2 gap-10 mb-12">
+                                            {[
+                                                { t: "Expertise", d: "Mining & Business" },
+                                                { t: "Expérience", d: "15+ Années" },
+                                                { t: "Dossiers", d: "300+ Réussis" },
+                                                { t: "Localisation", d: "Lubumbashi, DRC" }
+                                            ].map(item => (
+                                                <div key={item.t}>
+                                                    <h4 className="text-gold text-[10px] font-bold uppercase tracking-widest mb-2">{item.t}</h4>
+                                                    <p className="text-navy font-bold">{item.d}</p>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </RevealOnScroll>
+                                </div>
+                                <div className="lg:w-2/3 space-y-16">
+                                    <div>
+                                        <h4 className="text-xs font-bold uppercase tracking-widest text-gold mb-6 border-b border-gold/20 pb-4 inline-block">Biographie</h4>
+                                        <p className="text-stone-700 text-xl font-light leading-relaxed mb-10">Maître Jean Bilele Kasongo s'est imposé comme une figure incontournable du droit des affaires et du droit minier en République Démocratique du Congo.</p>
+                                        <p className="text-stone-600 text-lg font-light leading-relaxed mb-10">Son parcours est marqué par l'accompagnement de grands groupes internationaux dans leurs phases d'implantation et d'exploitation au sein du bassin minier du Katanga. Sa maîtrise du droit OHADA, couplée à une connaissance intime du Code Minier congolais, en fait un interlocuteur privilégié pour les investisseurs exigeants.</p>
+                                        <div className="p-10 bg-ivory border-l-4 border-gold italic text-stone-600 font-light leading-relaxed">
+                                            "Le droit n'est pas seulement un cadre, c'est un outil de développement. Mon rôle est de m'assurer que cet outil travaille en faveur de vos ambitions, tout en garantissant une éthique et une sécurité irréprochables."
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <h4 className="text-xs font-bold uppercase tracking-widest text-gold mb-10 border-b border-gold/20 pb-4 inline-block">Expertise Clé</h4>
+                                        <div className="grid sm:grid-cols-2 gap-12">
+                                            {[
+                                                { t: "Négociations Minières", d: "Intervention sur les contrats de joint-venture et d'amodiation." },
+                                                { t: "Conformité OHADA", d: "Audit et restructuration de sociétés commerciales." },
+                                                { t: "Contentieux d'Affaires", d: "Représentation devant les tribunaux de commerce et arbitraux." },
+                                                { t: "Conseil Gouvernemental", d: "Interactions stratégiques avec les autorités administratives." }
+                                            ].map((ex, i) => (
+                                                <div key={i}>
+                                                    <h5 className="font-serif text-xl mb-4 text-navy">{ex.t}</h5>
+                                                    <p className="text-stone-500 text-sm font-light leading-relaxed">{ex.d}</p>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                        </div>
+                    </section>
+
+                    {/* Pour qui */}
+                    <section className="py-32 bg-[#f8f9fa]">
+                        <div className="container mx-auto px-6">
+                            <div className="text-center mb-24">
+                                <h2 className="font-serif text-4xl mb-6 italic text-navy">Ils nous font confiance.</h2>
+                                <p className="text-stone-500 font-light">Nous accompagnons un spectre large d'acteurs de premier plan.</p>
+                            </div>
+                            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
                                 {[
                                     { t: "Sociétés Minières", d: "Exploitants, comptoirs et sous-traitants." },
                                     { t: "Investisseurs Étrangers", d: "Fonds, banques et holdings internationaux." },
                                     { t: "Groupes Locaux", d: "Entreprises en phase d'expansion OHADA." },
                                     { t: "Institutions", d: "Organisations et agences d'investissement." }
                                 ].map((item, i) => (
-                                    <div key={i} class="p-10 bg-white border border-stone-100 rounded-3xl hover:border-gold transition-all duration-500">
-                                        <h4 class="font-serif text-xl border-stone-100 mb-4">{item.t}</h4>
-                                        <p class="text-stone-400 text-sm font-light leading-relaxed">{item.d}</p>
+                                    <div key={i} className="p-10 bg-white border border-stone-100 rounded-3xl hover:border-gold transition-all duration-500 cursor-default group">
+                                        <h4 className="font-serif text-xl mb-4 text-navy group-hover:text-gold transition-colors">{item.t}</h4>
+                                        <p className="text-stone-400 text-sm font-light leading-relaxed">{item.d}</p>
                                     </div>
                                 ))}
                             </div>
@@ -123,22 +239,102 @@
                     </section>
 
                     {/* Signature */}
-                    <section class="py-32 bg-ivory text-center">
-                        <div class="container mx-auto px-6">
-                            <p class="font-serif text-2xl lg:text-3xl text-charcoal italic mb-12">"Parce que votre succès en RDC exige la meilleure architecture juridique."</p>
-                            <Button variant="primary" onClick={() => window.location.href='index.html#contact'}>Engager une collaboration</Button>
+                    <section className="py-32 bg-white text-center">
+                        <div className="container mx-auto px-6">
+                            <p className="font-serif text-2xl lg:text-3xl text-navy italic mb-12">"Parce que votre succès en RDC exige la meilleure architecture juridique."</p>
+                            <Button variant="gold" onClick={() => window.location.href='index.html#contact'}>Engager une collaboration</Button>
                         </div>
                     </section>
 
-                    <footer class="bg-charcoal py-20 text-stone-500">
-                        <div class="container mx-auto px-6 text-center">
-                            <div class="font-serif text-2xl tracking-tighter text-stone-300 mb-8">J<span class="text-gold">.</span>B<span class="text-gold">.</span>K</div>
-                            <p class="text-[10px] font-bold tracking-[0.3em] uppercase">Cabinet Maître Jean Bilele Kasongo</p>
+                    {/* Footer Style N'Daie */}
+                    <footer className="bg-navy py-32 text-white/50 border-t border-white/5 relative overflow-hidden">
+                        <div className="container mx-auto px-6">
+                            <div className="grid lg:grid-cols-4 gap-20 mb-24">
+                                <div className="col-span-1 lg:col-span-1">
+                                    <div className="font-serif text-3xl text-white mb-8 tracking-tighter">J<span className="text-gold">.</span>B<span className="text-gold">.</span>K</div>
+                                    <p className="text-sm font-light leading-relaxed mb-8">Cabinet d'avocats et d'affaires spécialisé en droit minier et des affaires en République Démocratique du Congo.</p>
+                                    <div className="flex space-x-4">
+                                        <a href="#" className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:border-gold hover:text-gold transition-all duration-500">LI</a>
+                                        <a href="#" className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:border-gold hover:text-gold transition-all duration-500">TW</a>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h4 className="text-white text-xs font-bold uppercase tracking-[0.3em] mb-10">Cabinet</h4>
+                                    <ul className="space-y-6 text-sm">
+                                        <li><a href="le-cabinet.html" className="hover:text-gold transition-colors">À Propos</a></li>
+                                        <li><a href="index.html#services" className="hover:text-gold transition-colors">Nos Services</a></li>
+                                        <li><a href="index.html#about" className="hover:text-gold transition-colors">Notre Vision</a></li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 className="text-white text-xs font-bold uppercase tracking-[0.3em] mb-10">Expertises</h4>
+                                    <ul className="space-y-6 text-sm">
+                                        <li><a href="droit-minier.html" className="hover:text-gold transition-colors">Droit Minier</a></li>
+                                        <li><a href="droit-des-affaires.html" className="hover:text-gold transition-colors">Droit des Affaires</a></li>
+                                        <li><a href="#" className="hover:text-gold transition-colors">Fiscalité</a></li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 className="text-white text-xs font-bold uppercase tracking-[0.3em] mb-10">Contact</h4>
+                                    <ul className="space-y-6 text-sm">
+                                        <li className="flex items-start">
+                                            <span className="text-gold mr-4">📍</span>
+                                            <span>Lubumbashi, Haut-Katanga, RD Congo</span>
+                                        </li>
+                                        <li className="flex items-center">
+                                            <span className="text-gold mr-4">📞</span>
+                                            <a href="tel:+243851305152" className="hover:text-gold transition-colors">+243 85 130 51 52</a>
+                                        </li>
+                                        <li className="flex items-center">
+                                            <span className="text-gold mr-4">✉️</span>
+                                            <a href="mailto:info@cabinetjkb.com" className="hover:text-gold transition-colors">info@cabinetjkb.com</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div className="pt-12 border-t border-white/5 flex flex-col md:row-reverse md:flex-row justify-between items-center gap-8 text-[10px] font-bold uppercase tracking-widest text-white/30">
+                                <p>&copy; 2026 Cabinet JBK. Tous droits réservés.</p>
+                                <div className="flex space-x-10">
+                                    <a href="#" className="hover:text-gold transition-colors">Mentions Légales</a>
+                                    <a href="#" className="hover:text-gold transition-colors">Confidentialité</a>
+                                </div>
+                            </div>
                         </div>
                     </footer>
+
+                    {/* WhatsApp Button */}
+                    <div className="fixed bottom-10 right-10 z-[100] group">
+                        <a href="https://wa.me/243851305152" target="_blank" rel="noopener noreferrer" className="bg-[#25D366] w-16 h-16 rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-transform duration-500 animate-pulse-subtle">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                        </a>
+                        <div className="absolute right-20 bottom-2 bg-white text-navy px-4 py-2 rounded-lg shadow-xl text-[10px] font-bold tracking-widest uppercase opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none border border-stone-100">
+                            Besoin d'aide ?
+                        </div>
+                    </div>
                 </div>
             );
         }
+
+        /* Animations Additionnelles */
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes subtle-zoom {
+                0% { transform: scale(1.05); }
+                100% { transform: scale(1.15); }
+            }
+            .animate-subtle-zoom {
+                animation: subtle-zoom 20s infinite alternate ease-in-out;
+            }
+            @keyframes pulse-subtle {
+                0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.4); }
+                70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+                100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+            }
+            .animate-pulse-subtle {
+                animation: pulse-subtle 3s infinite;
+            }
+        `;
+        document.head.appendChild(style);
 
         const root = ReactDOM.createRoot(document.getElementById('root'));
         root.render(<App />);
